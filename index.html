@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+    <meta charset="utf-8">
+    <title>Range Slider</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@100;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <hr>
+    <h1>Range Slider</h1>
+    <hr>
+
+    <div class="content">
+        <p>This is a simple, reusable, and customizable range slider web component. 
+            By clicking on the track of each sliders, users can modify the value of the slider 
+            and use the value to modify certain elements.
+            By hovering over the thumb, users can view the current value of the slider.
+        </p>
+        
+        <h2>Using the Component</h2>
+
+        <p>
+            To create a slider, use <span class="code-text">&lt;range-slider id="mySlider"&gt; &lt;/range-slider&gt;</span>. <br>
+            By default, this will render the following slider, with step of 1.
+            <range-slider id="mySlider"> </range-slider>
+            Users must specify an id for each component, so each sliders' value can be accessed via: <br> 
+            <span class="code-text">getSliderValue("&lt;<span style="color:red">user specified id</span>&gt;")</span>"
+        </p>
+
+        
+        <h2>Attributes</h2>
+        <p>This range slider component can have the following attributes. If an attribute is invalid, slider will be rendered with the default value.</p>
+
+        <table>
+            <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><span class="code-text">min</span></td>
+                <td>number [pixels]</td>
+                <td>The minimum value of the slider. <br>
+                    <span class="code-text">default value=0</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">max</span></td>
+                <td>number [pixels]</td>
+                <td>The minimum value of the slider. <br>
+                    Must be greater than <span class="code-text">min <br>
+                    default value=100</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">initial</span></td>
+                <td>number [pixels]</td>
+                <td>The initial value of the slider. <br>
+                    Cannot be less than <span class="code-text">min,</span> <br>
+                    or greater than <span class="code-text">max</span>. <br>
+                    <span class="code-text">default value= average of min and max</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">length</span></td>
+                <td>number [pixels]</td>
+                <td>The length of the track. <br>
+                    Must be greater than 0. <br>
+                    <span class="code-text">default value=200</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">height</span></td>
+                <td>number [pixels]</td>
+                <td>The height of the track. <br>
+                    Must be greater than 0. <br>
+                    This will also determine the height of the thumb. <br>
+                    <span class="code-text">default value=15</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">thumbRounding</span></td>
+                <td>number [0 to 1]</td>
+                <td>The roundness of the thumb. <br>
+                    Cannot be less than 0, or greater than 1. <br>
+                    <span class="code-text">default value=1</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">trackColor</span></td>
+                <td>color [hex number]</td>
+                <td>The color of the track. <br>
+                    Must be a color value in hex number with "#".  <br>
+                    <span class="code-text">default value="#8FBC8F"</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">thumbColor</span></td>
+                <td>color [hex number]</td>
+                <td>The color of the thumb. <br>
+                    Must be a color value in hex number with "#".  <br>
+                    <span class="code-text">default value="#FFFFFF"</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">thumbBorderColor</span></td>
+                <td>color [hex number]</td>
+                <td>The color of the thumb's border. <br>
+                    Must be a color value in hex number with "#".  <br>
+                    <span class="code-text">default value="#8FBC8F"</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">showNumbers</span></td>
+                <td>string "false" or "true"</td>
+                <td>When set to true, the minimum and maximum values are displayed around the slider. <br>
+                    <span class="code-text">default value=true</span></td>
+            </tr>
+            <tr>
+                <td><span class="code-text">showIndicator</span></td>
+                <td>string "false" or "true"</td>
+                <td>When set to true, the value of the slider is displayed when the pointer hovers over the thumb. <br>
+                    <span class="code-text">default value=true</span></td>
+            </tr>
+            </table>
+
+
+        <h2>Examples</h2>
+        <h4 class="example"><span class="code-text">&lt;range-slider 
+            id="mySlider1" <br>
+            trackColor="#e9c46a" <br>
+            thumbColor="#f4a261" <br>
+            thumbBorderColor="#90be6d" <br>
+            &gt; &lt;/range-slider&gt;
+        </span></h4>
+        <range-slider 
+            id="mySlider1"
+            trackColor="#e9c46a"
+            thumbColor="#f4a261"
+            thumbBorderColor="#90be6d"
+        > </range-slider>
+
+        <h4 class="example"><span class="code-text">&lt;range-slider 
+            id="mySlider2" <br>
+            initial = 100 <br>
+            min = -100 <br>
+            max = 100 <br>
+            length = 200 <br>
+            height = 10 <br>
+            thumbRounding = 0.3 <br>
+            trackColor = "#FFC0CB" <br>
+            thumbBorderColor = "#008080" <br>
+            &gt; &lt;/range-slider&gt;
+        </span></h4>
+
+        <range-slider
+            id="mySlider2"
+            initial = 100
+            min = -100
+            max = 100
+            length = 400
+            height = 20
+            thumbRounding = 0.3
+            trackColor = "#FFC0CB"
+            thumbBorderColor = "#f28482"
+        > </range-slider>
+
+
+        <h4 class="example"><span class="code-text">&lt;range-slider 
+            id="mySlider3" <br>
+            min = 200 <br>
+            max = 10000000 <br>
+            length = 800 <br>
+            height = 10 <br>
+            &gt; &lt;/range-slider&gt;
+        </span></h4>
+
+        <range-slider
+            id="mySlider3"
+            min = 200
+            max = 100000       
+            length = 800
+            height = 10
+        > </range-slider>
+
+        <h4 class="example"><span class="code-text">&lt;range-slider 
+            id="mySlider4" <br>
+            showNumbers="false" <br>
+            showIndicator="false" <br>
+            &gt; &lt;/range-slider&gt;
+        </span></h4>
+        <range-slider 
+            id="mySlider4"
+            showNumbers="false"
+            showIndicator="false"
+        > </range-slider>
+
+
+        <h2>Demo</h2>
+        <p>Change the opacity (in %) with the sliders!</p>
+        <div class="demo-container">
+            
+            <div class="demo1"></div>
+            <div>
+                <range-slider 
+                    id="mySliderDemo1"
+                    initial=100
+                > </range-slider>
+            </div>
+            <div class="demo2"></div>
+            <div>
+                <range-slider 
+                    id="mySliderDemo2"
+                    initial=100
+                > </range-slider>
+            </div>
+        
+        </div>
+
+        <h3>Demo Codes</h3>
+        <p>The first and the second demos are essentially equivalent. </p>
+        <p class="code-text">
+            getSliderTrack("mySliderDemo1").addEventListener('click', (event) => { <br>
+                let sliderValue = getSliderValue("mySliderDemo1");<br>
+                document.querySelector(".demo1").style.setProperty('opacity', sliderValue/100);
+            }); 
+        </p>
+        <p>If end user chooses to not use range-slider.js, please use the following example as reference.</p>
+        <p class="code-text">
+            document.getElementById("mySliderDemo2").shadow.querySelector("#mySliderDemo2"+"Track").addEventListener('click', (event) => {<br>
+                let sliderValue = Number(document.querySelector("#mySliderDemo2").shadow.querySelector("#mySliderDemo2"+"Value").textContent);<br>
+                document.querySelector(".demo2").style.setProperty('opacity', sliderValue/100);
+
+            }); 
+        </p>
+    </div>
+    <div class="footer">
+        © 2022 Yeunha Kim.
+    </div>
+
+    <script type="text/javascript" src="range-slider.js"></script>
+    <script>
+
+        getSliderTrack("mySliderDemo1").addEventListener('click', (event) => {
+            let sliderValue = getSliderValue("mySliderDemo1");
+            document.querySelector(".demo1").style.setProperty('opacity', sliderValue/100);
+        }); 
+        
+        document.getElementById("mySliderDemo2").shadow.querySelector("#mySliderDemo2"+"Track").addEventListener('click', (event) => {
+            let sliderValue = Number(document.querySelector("#mySliderDemo2").shadow.querySelector("#mySliderDemo2"+"Value").textContent);
+            document.querySelector(".demo2").style.setProperty('opacity', sliderValue/100);
+        }); 
+        
+        
+    </script>
+</body>
+</html>
+
+
